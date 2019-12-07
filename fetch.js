@@ -2,10 +2,6 @@
 // - https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
 const fetch = require("node-fetch");
 
-let sampleObj = {
-    tree_id: '111111'
-}
-
 // last '&' does not affect the query, so acceptable
 function parseJsonToStr(obj) {
     let str = ""
@@ -19,7 +15,8 @@ function parseJsonToStr(obj) {
     return str
 }
 
-// input: one big JSON object
+// input: api base link, JSON parameters (sampleJsonObj = { tree_id: '111111' })
+// output: JSON object
 async function fetchAPI(base, jsonObj) {
 
     let query = base
@@ -35,7 +32,7 @@ async function fetchAPI(base, jsonObj) {
 
 }
 
-// base url of winnipeg tree api.
-let base = 'https://data.winnipeg.ca/resource/hfwk-jp4h.json'
-fetchAPI(base, sampleObj)
-    .then(data => console.log(data))
+// for node.js, such that fetchAPI can be called from other files.
+module.exports = {
+    fetchAPI
+}

@@ -1,0 +1,24 @@
+{
+  "name": "treepeg",
+  "version": "1.0.0",
+  "description": "Trees",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export",
+    "deploy": "next build && next export"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Letharrick/treepeg.git"
+  },
+  "dependencies": {
+    "@material-ui/core": "^4.1.2",
+    "@material-ui/icons": "^4.2.1",
+    "next": "^8.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

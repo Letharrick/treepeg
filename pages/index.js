@@ -6,6 +6,7 @@ import ThemeProvider from '@material-ui/styles/ThemeProvider';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 
+import TreeCard from '.././components/TreeCard';
 import SearchBar from '.././components/SearchBar';
 import { lightGreen, brown, red } from '@material-ui/core/colors';
 
@@ -16,12 +17,27 @@ const THEME = createMuiTheme({
     palette: {
         primary: lightGreen,
         secondary: brown,
-        error: red,
+        error: red
     },
     typography: {
-        fontFamily: 'Raleway, sans-serif',
-        fontSize: 48,
+        fontFamily: 'Raleway, sans-serif'
     },
+    props: {
+        MuiCard: {
+            elevation: 5
+        },
+        MuiInputBase: {
+            fullWidth: true,
+        }
+    },
+    overrides: {
+        MuiCard: {
+            root: {
+                padding: 15,
+                borderRadius: 25
+            }
+        }
+    }
 });
 
 class Index extends React.Component {
@@ -35,11 +51,12 @@ class Index extends React.Component {
                 <Box width={'100%'} height={'100%'} display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
                     <Head>
                         <title>TreePeg</title>
-                        <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet"/>
+                        <link href="https://fonts.googleapis.com/css?family=Raleway:400,500,700&display=swap" rel="stylesheet"/>
                     </Head>
 
-                    <Typography>TreePeg</Typography>
+                    <Typography variant={'h2'}>TreePeg</Typography>
                     <SearchBar></SearchBar>
+                    <TreeCard></TreeCard>
 
                     <style jsx global> {`
                             html {
@@ -67,6 +84,10 @@ class Index extends React.Component {
                 </Box>
             </ThemeProvider>
         );
+    }
+
+    onSearch() {
+        
     }
 }
 

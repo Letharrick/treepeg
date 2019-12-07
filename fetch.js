@@ -1,6 +1,6 @@
 // install reference 
 // - https://stackoverflow.com/questions/48433783/referenceerror-fetch-is-not-defined
-const fetch = require("node-fetch");
+// const fetch = require("node-fetch"); [Node.js Version]
 
 // last '&' does not affect the query, so acceptable
 function parseJsonToStr(obj) {
@@ -33,6 +33,6 @@ async function fetchAPI(base, jsonObj) {
 }
 
 // for node.js, such that fetchAPI can be called from other files.
-module.exports = {
-    fetchAPI
-}
+// module.exports = {
+//     fetchAPI
+// }

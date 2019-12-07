@@ -7,6 +7,9 @@ let sampleObj = {
 }
 
 // call fetch
-fetch.fetchAPI(base, sampleObj)
-    .then(data => console.log(data))
-    .catch((error) => error)
+// ref: Assign Fetch Response To Variable
+//      https://www.reddit.com/r/learnjavascript/comments/9zo92w/assign_fetch_response_to_variable/
+async function getDataset() {
+    let dataset = await fetch.fetchAPI(base, sampleObj).catch((error) => error)
+    console.log(dataset)
+}

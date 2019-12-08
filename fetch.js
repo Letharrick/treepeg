@@ -5,7 +5,7 @@
 // last '&' does not affect the query, so acceptable
 function parseJsonToStr(obj) {
     let str = ""
-    for (key in obj) {
+    for (let key in obj) {
         if (typeof obj[key] == "object") {
             str += parseJsonToStr(obj[key]);
         } else {
@@ -28,11 +28,7 @@ async function fetchAPI(base, jsonObj) {
 
     const response = await fetch(query);        // fetch from the api
     const responseJson = await response.json(); // parse JSON to JS objects 
-    return responseJson[0]
-
+    return responseJson;
 }
 
-// for node.js, such that fetchAPI can be called from other files.
-// module.exports = {
-//     fetchAPI
-// }
+export default fetchAPI;

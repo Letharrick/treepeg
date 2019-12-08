@@ -10,8 +10,7 @@ import TreeCard from '.././components/TreeCard';
 import SearchBar from '.././components/SearchBar';
 import { lightGreen, brown, red } from '@material-ui/core/colors';
 
-const GREEN = '#EAFFD7';
-const DARK_PURPLE = '#300C31';
+import fetchAPI from '.././fetch';
 
 const THEME = createMuiTheme({
     palette: {
@@ -43,6 +42,10 @@ const THEME = createMuiTheme({
 class Index extends React.Component {
     constructor(props) {
         super(props);
+        this.search = this.search.bind(this);
+        this.state = {
+            treeCards: []
+        }
     }
 
     render() {
@@ -55,8 +58,9 @@ class Index extends React.Component {
                     </Head>
 
                     <Typography variant={'h2'}>TreePeg</Typography>
-                    <SearchBar></SearchBar>
-                    <TreeCard></TreeCard>
+                    <SearchBar onSearch={this.search}></SearchBar>
+                    
+                    {this.state.treeCards}
 
                     <style jsx global> {`
                             html {
@@ -86,8 +90,20 @@ class Index extends React.Component {
         );
     }
 
-    onSearch() {
-        
+    search(neighbourhood) {
+        let input = {
+            neighbourhood: neighbourhood.toUpperCase()
+        };
+
+        fetchAPI('https://data.winnipeg.ca/resource/hfwk-jp4h.json', input).then(trees => {
+            console.log("Fetched Successfully!")
+
+            let firstTree = trees[0];
+            let treeCard = <TreeCard tree={firstTree}></TreeCard>;
+            this.setState({
+                treeCards: [treeCard]
+            });
+        })
     }
 }
 

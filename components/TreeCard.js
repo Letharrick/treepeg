@@ -5,8 +5,10 @@ import { Card, Typography, Box, Container } from '@material-ui/core';
 
 const styles = {
     card: {
+        marginLeft: 20,
+        marginRight: 20,
         width: 350,
-        height: 250,
+        height: 200,
     }
 }
 
@@ -21,12 +23,13 @@ class TreeCard extends React.Component {
             <Card color={'primary'} style={styles.card}>
                 <Container>
                     <Box textAlign={'center'} fontWeight={700}>
-                        <Typography variant={'h4'}>{this.props.tree.common_name}</Typography>
+                        <Typography variant={'h4'}>{this.props.treeStats.common_name}</Typography>
                     </Box>
                     <Box textAlign={'center'} fontStyle={'italic'}>
-                        <Typography variant={'h6'}>{this.props.tree.botanical_name}</Typography>
+                        <Typography variant={'h5'}>{this.props.treeStats.botanical_name}</Typography>
                     </Box>
-                    <Box display={'flex'} flexDirection={'column'} justifyContent={'center'} alignItems={'center'}>
+                    <Box textAlign={'center'} fontStyle={'italic'}>
+                        <Typography variant={'h6'}>{this.props.treeStats.amount}</Typography>
                     </Box>
                 </Container>
             </Card>

@@ -23,7 +23,7 @@ class SearchBar extends React.Component {
     }
 
     render() {
-        let inputElement = <InputBase onChange={e => {this.setState({value: e.target.value})}} placeholder={'Street'}></InputBase>;
+        let inputElement = <InputBase onChange={e => {this.setState({value: e.target.value})}} placeholder={'Neighbourhood'}></InputBase>;
 
         return (
             <Box style={{borderRadius: 100}} width={1 / 4} m={5} p={2} pl={3} pr={3} boxShadow={10} display={'flex'}>

@@ -60,7 +60,9 @@ class Index extends React.Component {
                     <Typography variant={'h2'}>TreePeg</Typography>
                     <SearchBar onSearch={this.search}></SearchBar>
                     
-                    {this.state.treeCards}
+                    <Box display={'flex'} >
+                        {this.state.treeCards}
+                    </Box>
 
                     <style jsx global> {`
                             html {
@@ -98,11 +100,37 @@ class Index extends React.Component {
         fetchAPI('https://data.winnipeg.ca/resource/hfwk-jp4h.json', input).then(trees => {
             console.log("Fetched Successfully!")
 
-            let firstTree = trees[0];
-            let treeCard = <TreeCard tree={firstTree}></TreeCard>;
+            let treeCards = [];
+
+            let treeDict = {};
+            for (let tree of trees) {
+                let treeList = treeDict[tree.common_name];
+                if (treeList) {
+                    treeList.push(tree);
+                } else {
+                    treeDict[tree.common_name] = [tree];
+                }
+            }
+            
+            let treeStats = []
+            for (let k in treeDict) {
+                let treeListOfSpecies = treeDict[k];
+
+                let speciesInformation = {};
+                speciesInformation.common_name = k;
+                speciesInformation.botanical_name = treeListOfSpecies[0].botanical_name;
+                speciesInformation.amount = treeListOfSpecies.length;
+                treeStats.push(speciesInformation);
+            }
+
+            for (let treeStat of treeStats) {
+                let treeCard = <TreeCard treeStats={treeStat}></TreeCard>;
+                treeCards.push(treeCard);
+            }
+
             this.setState({
-                treeCards: [treeCard]
-            });
+                treeCards
+            })
         })
     }
 }
